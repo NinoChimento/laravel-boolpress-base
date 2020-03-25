@@ -18,6 +18,11 @@
             Hai modificato il post:{{session("update")->title}}
         </div>
     @endif
+     @if (session("delete"))
+        <div class="alert alert-succes">
+            Hai creato il post:{{session("create")->title}}
+        </div>
+    @endif
 <a class="btn btn-success" href="{{route("posts.create")}}"> Crea Articolo</a>
     <div class="wrap-posts d-flex flex-wrap">
         @foreach ($posts as $post)

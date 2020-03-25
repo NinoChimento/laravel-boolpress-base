@@ -44,7 +44,7 @@ class PostController extends Controller
         $post->fill($data);
         $response = $post->save();
        if($response){
-           return redirect()->route("posts.index");
+         return   redirect()->route("posts.index")->with("create", $post);
        }
        else{
            abort("404");
