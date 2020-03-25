@@ -8,6 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+     @if (session("delete"))
+        <div class="alert alert-danger">
+            Hai eliminato il post:{{session("delete")->title}}
+        </div>
+    @endif
 <a class="btn btn-success" href="{{route("Posts.create")}}"> Crea Articolo</a>
     <div class="wrap-posts d-flex flex-wrap">
         @foreach ($posts as $post)
@@ -18,7 +23,12 @@
                <h5 class="card-title">Genere : {{$post->genre}}</h5>
                <p class="card-text">{{$post->description}}</p>
                <a href="{{route("Posts.show",$post->id)}}" class="btn btn-primary">Dettagli</a>
-                </div>
+               <form action="{{route("Posts.destroy", $post->id)}}" method="POST">
+                @csrf
+                @method("DELETE")
+                <button class="btn btn-danger" type="submit">Cancella</button>
+               </form>
+            </div>
              </div>
         @endforeach
     </div>

@@ -41,9 +41,10 @@ class PostController extends Controller
     ]);
         $data = $request->all();
         $post = new Post;
-        $response = $post->fill($data);
+        $post->fill($data);
+        $response = $post->save();
        if($response){
-           return redirect()->route("Posts.index",compact("post"));
+           return redirect()->route("Posts.index");
        }
        else{
            abort("404");
@@ -94,6 +95,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+      
+        $post = Post::all()->find($id);
+        $response = $post->delete();
+        if($response){
+          return redirect()->route("Posts.index")->with("delete",$post);
+        }
     }
 }

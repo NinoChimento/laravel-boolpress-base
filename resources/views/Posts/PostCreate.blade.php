@@ -13,6 +13,7 @@
     @method("POST")
     <input class="form-control" type="text" name="title" value="" placeholder="title">
     <input class="form-control" type="text" name="genre" value="" placeholder="genre">
+    <input class="form-control" type="text" name="img" value="" placeholder="img  ">
      <textarea class="form-control" name="description" value="" placeholder="Descrizione" rows="3"></textarea>
      <button type="submit">Crea articolo</button>
 </form>
