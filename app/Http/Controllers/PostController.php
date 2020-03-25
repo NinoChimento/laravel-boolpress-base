@@ -44,7 +44,7 @@ class PostController extends Controller
         $post->fill($data);
         $response = $post->save();
        if($response){
-           return redirect()->route("Posts.index");
+           return redirect()->route("posts.index");
        }
        else{
            abort("404");
@@ -57,9 +57,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     { 
-        $post = Post::all()->find($id);
+        // $post = Post::all()->find($id);
        
         return view("Posts.PostShow",compact("post"));
     }
@@ -70,9 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Post $post)
+    {   
+        return view("Posts.PostEdit",compact("post"));
     }
 
     /**
@@ -82,9 +82,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            "title" => "required|string",
+            "genre" => "required|string|max:200",
+            "description" => "required|string",
+        ]);
+        $data= $request->all();
+      
+        $response = $post->update($data);
+      
+        if($response){
+            return redirect()->route("posts.index")->with("update", $post);
+        }
     }
 
     /**
@@ -93,14 +104,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         
       
-        $post = Post::all()->find($id);
+        // $post = Post::all()->find($id);
         $response = $post->delete();
         if($response){
-          return redirect()->route("Posts.index")->with("delete",$post);
+          return redirect()->route("posts.index")->with("delete",$post);
         }
     }
 }

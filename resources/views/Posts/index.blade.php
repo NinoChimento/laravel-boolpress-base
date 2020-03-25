@@ -13,7 +13,12 @@
             Hai eliminato il post:{{session("delete")->title}}
         </div>
     @endif
-<a class="btn btn-success" href="{{route("Posts.create")}}"> Crea Articolo</a>
+     @if (session("update"))
+        <div class="alert alert-succes">
+            Hai modificato il post:{{session("update")->title}}
+        </div>
+    @endif
+<a class="btn btn-success" href="{{route("posts.create")}}"> Crea Articolo</a>
     <div class="wrap-posts d-flex flex-wrap">
         @foreach ($posts as $post)
             <div class="card" style="width: 18rem;">
@@ -22,11 +27,12 @@
                <div class="card-body">
                <h5 class="card-title">Genere : {{$post->genre}}</h5>
                <p class="card-text">{{$post->description}}</p>
-               <a href="{{route("Posts.show",$post->id)}}" class="btn btn-primary">Dettagli</a>
-               <form action="{{route("Posts.destroy", $post->id)}}" method="POST">
+               <a class="btn btn-primary 2-m" href="{{route("posts.edit", $post)}}">Modifica</a>
+               <a href="{{route("posts.show",$post)}}" class="btn btn-primary">Dettagli</a>
+               <form action="{{route("posts.destroy", $post)}}" method="POST">
                 @csrf
                 @method("DELETE")
-                <button class="btn btn-danger" type="submit">Cancella</button>
+                <button class="btn btn-danger m-2" type="submit">Cancella</button>
                </form>
             </div>
              </div>

@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="{{route("Posts.store")}}" method="POST">
+<form action="{{route("posts.store")}}" method="POST">
     @csrf
     @method("POST")
     <input class="form-control" type="text" name="title" value="" placeholder="title">

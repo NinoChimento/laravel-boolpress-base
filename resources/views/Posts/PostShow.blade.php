@@ -15,7 +15,7 @@
          <div class="card-body">
                <h5 class="card-title">Genere : {{$post->genre}}</h5>
                <p class="card-text">{{$post->description}}</p>
-               <a href="{{route("Posts.index")}}" class="btn btn-primary">Home</a>
+               <a href="{{route("posts.index")}}" class="btn btn-primary">Home</a>
          </div>
     </div>
 </body>
