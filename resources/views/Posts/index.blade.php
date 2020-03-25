@@ -8,7 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="wrap-posts d-flex">
+<a class="btn btn-success" href="{{route("Posts.create")}}"> Crea Articolo</a>
+    <div class="wrap-posts d-flex flex-wrap">
         @foreach ($posts as $post)
             <div class="card" style="width: 18rem;">
                  <h2>{{$post->title}}</h2>
@@ -16,7 +17,7 @@
                <div class="card-body">
                <h5 class="card-title">Genere : {{$post->genre}}</h5>
                <p class="card-text">{{$post->description}}</p>
-               <a href="{{route("Posts.show",$post)}}" class="btn btn-primary">Dettagli</a>
+               <a href="{{route("Posts.show",$post->id)}}" class="btn btn-primary">Dettagli</a>
                 </div>
              </div>
         @endforeach

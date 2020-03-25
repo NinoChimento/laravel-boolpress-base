@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("Posts.PostCreate");
     }
 
     /**
@@ -34,8 +34,20 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   $request->validate([
+        "title"=> "required|string",
+        "genre"=> "required|string|max:200",
+        "description"=> "required|string",
+    ]);
+        $data = $request->all();
+        $post = new Post;
+        $response = $post->fill($data);
+       if($response){
+           return redirect()->route("Posts.index",compact("post"));
+       }
+       else{
+           abort("404");
+       }
     }
 
     /**
@@ -44,8 +56,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
-    {
+    public function show($id)
+    { 
+        $post = Post::all()->find($id);
+       
         return view("Posts.PostShow",compact("post"));
     }
 
