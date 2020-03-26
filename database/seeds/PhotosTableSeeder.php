@@ -16,7 +16,7 @@ class PhotosTableSeeder extends Seeder
             $newPhoto = new Photo;
             $newPhoto->user_id = rand(1,3);
             $newPhoto->description = $faker->paragraph();
-            $newPhoto->img = $faker->imageUrl(640,400);
+            $newPhoto->img = "https://picsum.photos/id/ . rand(1, 100) . /300/200";
             $newPhoto->save();
         }
     }
