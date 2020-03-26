@@ -18,7 +18,7 @@ class PhotosTableSeeder extends Seeder
             $newPhoto->user_id = rand(1,3);
             $newPhoto->description = $faker->paragraph();
             $newPhoto->title = $faker->monthName();
-            $newPhoto->img = "https://picsum.photos/id/.$numberOne./300/200";
+            $newPhoto->img = "https://picsum.photos/id/$numberOne/300/200";
             $newPhoto->save();
         }
     }
