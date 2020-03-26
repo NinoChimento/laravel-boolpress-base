@@ -44,9 +44,9 @@ class AvatarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Avatar $avatar)
     {
-        //
+        return view("Avatars.avatarShow",compact("avatar"));
     }
 
     /**
