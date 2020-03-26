@@ -1,4 +1,12 @@
+@extends('layouts.layout')
 
-@foreach ($photos as $photo)
-    @dd($photo->user->name);
-@endforeach
+@section('main')
+    <div class="wrap-foto d-flex flex-wrap">
+        @foreach ($photos as $photo)
+            <div class="card" style="width: 18rem;">
+            <h2>Author : {{$photo->user->name}}</h2>
+            </div>
+        @endforeach
+    </div>
+@endsection
+
