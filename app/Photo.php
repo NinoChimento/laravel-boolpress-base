@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+
 class Photo extends Model
 {
-    protected $fillable = ['user_id',"img","description"];
+    protected $fillable = ['user_id',"img","description","title"];
 
     public function user()
     {
